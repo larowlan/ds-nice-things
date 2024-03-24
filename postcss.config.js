@@ -1,0 +1,42 @@
+export default ctx => ({
+  plugins: {
+    "postcss-import": {},
+    "postcss-mixins": {},
+    "postcss-inline-svg": {},
+    "postcss-preset-env": {
+      stage: 0,
+      features: {
+        "focus-visible-pseudo-class": false,
+        "logical-properties-and-values": false,
+        "cascade-layers": false,
+        "is-pseudo-class": false,
+      },
+    },
+    "postcss-hover-media-feature": {},
+    autoprefixer: {},
+    "postcss-pxtorem": {
+      propList: [
+        "font",
+        "font-size",
+        "line-height",
+        "letter-spacing",
+        "margin",
+        "margin-block-start",
+        "margin-block-end",
+        "margin-inline-start",
+        "margin-inline-end",
+        "padding",
+        "padding-block-start",
+        "padding-block-end",
+        "padding-inline-start",
+        "padding-inline-end",
+        "height",
+        "width",
+        "--*",
+      ],
+      unitPrecision: 4,
+      exclude: "",
+    },
+  },
+  map: ctx.env !== "production",
+})

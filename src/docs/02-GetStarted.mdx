@@ -1,0 +1,87 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Getting started"/>
+<h1>Get started</h1>
+
+You need `npm` installed - If not, get it - use `nvm` so you can switch versions easily
+
+For a new project `npx create-vite@latest`
+
+```shell
+npx create-vite@latest myproject
+
+cd myproject
+
+npm i
+
+npx storybook@latest init --type html
+
+npm i -D vite-plugin-twig-drupal
+
+```
+
+Then configure vite.config.js
+
+```javascript
+import { defineConfig } from "vite"
+import twig from 'vite-plugin-twig-drupal';
+import { join } from "node:path"
+
+export default defineConfig({
+  plugins: [
+    twig({
+      namespaces: {
+        yourdesignsystem: join(__dirname, "/src/components"),
+      },
+    }),
+  ],
+})
+
+```
+
+Configure storybook
+
+```javascript
+// .storybook/main.js
+const config = {
+  stories: [
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook/html-vite",
+    options: {},
+  },
+  docs: {
+    autodocs: "tag",
+  },
+}
+```
+
+Global CSS
+
+```javascript
+// .storybook/preview.js
+import '../src/base/reset.css';
+import '../src/base/base.css';
+import '../src/docs/docs.css';
+
+const preview = {
+  parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+  },
+};
+
+export default preview;
+```

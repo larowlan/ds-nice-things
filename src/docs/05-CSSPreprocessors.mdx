@@ -1,0 +1,24 @@
+import {Canvas, Meta} from "@storybook/blocks";
+import * as CardStories from "../components/card/card.stories.js";
+
+<Meta title="CSS Preprocessors"/>
+
+<h1>CSS Preprocessors</h1>
+
+Vite has zero-config support for postcss and sass.
+
+E.g you can setup your postcss.config.js
+
+```javascript
+// postcss.config.js
+export default ctx => ({
+  plugins: {
+    "postcss-import": {},
+    "postcss-mixins": {},
+    // Anything else you want here.
+  }
+})
+
+```
+
+<Canvas of={CardStories.Default}/>

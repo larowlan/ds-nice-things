@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "Roboto";
+    src:
+            local("Roboto"),
+            url("./Roboto-Regular.ttf") format("opentype")
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    src:
+            local("Roboto-Medium"),
+            url("./Roboto-Medium.ttf") format("opentype")
+}
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src:
+            local("Roboto-Italic"),
+            url("./Roboto-Italic.ttf") format("opentype")
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: 700;
+    src:
+            local("Roboto-Bold"),
+            url("./Roboto-Bold.ttf") format("opentype")
+}

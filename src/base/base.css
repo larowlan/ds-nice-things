@@ -1,0 +1,31 @@
+:root {
+    --text-color: #0f0926;
+    --primary: #f5d14a;
+    --secondary: #f76246;
+    --tertiary: #5c6cd5;
+    --accent: #ece7d6;
+
+    --font-size-m: 1.5rem;
+}
+
+html {
+    font-family: Roboto, sans-serif;
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: var(--font-size-m);
+}
+
+.visually-hidden {
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    box-sizing: border-box;
+    position: absolute !important;
+    margin: 0;
+    margin-inline-end: 0;
+    padding: 0;
+}

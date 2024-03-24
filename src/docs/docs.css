@@ -1,0 +1,15 @@
+h1.title {
+    font-size: 5rem;
+    letter-spacing: -2px;
+    margin: 3rem 0;
+}
+
+h2.title {
+    border: none;
+    font-size: 3rem;
+    margin: 3rem 0;
+}
+
+h3.title {
+    font-size: 2rem;
+}

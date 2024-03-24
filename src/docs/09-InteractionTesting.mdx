@@ -1,0 +1,51 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Interaction Testing"/>
+
+# Interaction testing
+
+You can do interaction and visual regression testing right from Storybook
+
+Components are dynamic, so showing that is useful for designers.
+
+```shell
+npm i -D @storybook/testing-library @storybook/jest @storybook/addon-interactions
+```
+
+```javascript
+// .storybook/main.js
+const config = {
+  ...
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    '@storybook/addon-interactions', // 👈️ Register the addon
+  ],
+  ...
+}
+```
+
+```javascript
+// some-component.stories.js
+import { userEvent, waitFor, within } from '@storybook/testing-library'; // 👈️
+import { expect } from '@storybook/jest'; // 👈️
+
+//...
+
+export const Default = {
+  play: async ({ canvasElement, step }) => { // 👈️
+    // Starts querying the component from its root element
+    const canvas = within(canvasElement);
+
+    await step('Collapse sidebar', async () => {
+      userEvent.click(canvas.getByRole('button'));
+    });
+
+    await waitFor(() => expect(canvasElement.querySelector('aside')).not.toBeVisible());
+  },
+};
+
+
+```
+
+You can do anything here you'd do with @testing-libary - including using things like `msw` for mocking HTTP requests.

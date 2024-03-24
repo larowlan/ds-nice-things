@@ -1,0 +1,49 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Using in Drupal"/>
+
+# Using in Drupal
+
+* Use SDC
+* Use UI Patterns and component blocks
+* Use Pinto
+* Theme hooks w/ bundle classes
+
+Simplest form, make use of Twig namespaces and components module.
+
+Remember this?
+
+```javascript
+export default defineConfig({
+  plugins: [
+    twig({
+      namespaces: {
+        yourdesignsystem: join(__dirname, "/src/components"), // 👈️👈️👈️
+      },
+    }),
+  ],
+})
+```
+
+Configure components module
+
+```yml
+# yourtheme.info.yml
+components:
+  namespaces:
+    yourdesignsystem:
+      - /path/to/your/components
+```
+
+Then in your Drupal templates
+
+```html
+{% include "@yourdesignsystem/some/template.twig" with {
+  some: 'vars',
+  go: 'here',
+%}
+```
+
+Wire up your libraries.yml (or not if using SDC)
+
+Oh there's also Vite module if you want to hot-reload in Drupal too.

@@ -1,0 +1,5 @@
+.grid > .__debug {
+    background-color: #ccc;
+    border: 1px solid red;
+    min-height: 200px;
+}

@@ -1,0 +1,60 @@
+import {Canvas, Meta} from "@storybook/blocks";
+import * as CardStories from "../components/card/card.stories.js";
+
+<Meta title="Creating stories"/>
+<h1>Creating stories</h1>
+
+Standard Storybook format here
+
+Let's create a card
+
+```shell
+mkdir src/components/card
+```
+
+```html
+<!-- card.twig -->
+<article class="card">
+  <h3 class="card__title">{{ title }}</h3>
+  {% if image_uri %}
+    <figure class="card__image">
+      <img src="{{ image_uri }}" alt="{{ image_al }}" />
+    </figure>
+  {% endif %}
+  {% if teaser %}
+    <p class="card__teaser">{{ teaser }}</p>
+  {% endif %}
+  {% if href %}
+    <a href="{{ href }}" class="card__link">
+      Read more <span class="visually-hidden">about {{ title }}</span>
+    </a>
+  {% endif %}
+</article>
+
+```
+
+```javascript
+// card.stories.js
+import card from "./card.twig";
+import "./card.css";
+
+export default {
+  title: "Components/Card",
+  component: card,
+  parameters: {
+    layout: "centered",
+  },
+}
+
+export const Default = {
+  args: {
+    title: 'My card',
+    href: '#',
+    teaser: 'Lorem ipsum dolor sit amet.',
+    image_alt: 'Image of beach',
+    image_uri: "https://picsum.photos/id/218/196/126",
+  }
+};
+```
+
+<Canvas of={CardStories.Default}/>

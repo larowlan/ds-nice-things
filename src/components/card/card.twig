@@ -1,0 +1,16 @@
+<article class="card {{ modifier_class }}">
+  <h3 class="card__title">{{ title }}</h3>
+  {% if image_uri %}
+    <figure class="card__image">
+      <img src="{{ image_uri }}" alt="{{ image_al }}" />
+    </figure>
+  {% endif %}
+  {% if teaser %}
+    <p {# class="card__teaser"#}>{{ teaser }}</p>
+  {% endif %}
+  {% if href %}
+    <a href="{{ href }}" class="card__link">
+      Read more <span class="visually-hidden">about {{ title }}</span>
+    </a>
+  {% endif %}
+</article>

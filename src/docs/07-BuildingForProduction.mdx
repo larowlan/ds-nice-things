@@ -1,0 +1,66 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Building for production"/>
+<h1>Build for production</h1>
+## Javascript
+Vite uses esbuild to transpile Javascript for the browser.
+
+This includes anything you install with npm.
+
+And Typescript if that's your thing!
+
+You can configure this however you like
+
+```javascript
+// vite.config.js
+import { defineConfig } from "vite"
+import twig from 'vite-plugin-twig-drupal';
+import { join } from "node:path"
+
+import fg from "fast-glob";
+const entry = fg
+  .sync([
+    "./src/**/*.js",
+    "./src/**/*.css",
+  ])
+  .filter(
+    (name) =>
+      !name.includes("__tests__") &&
+      !name.includes(".storybook.") &&
+      !name.includes(".stories."));
+
+export default defineConfig({
+  plugins: [
+    twig({
+      namespaces: {
+        components: join(__dirname, "/src/components"),
+      },
+    }),
+  ],
+  build: { // 👈️
+    minify: "esbuild",
+    cssCodeSplit: true,
+    outDir: 'libraries/nicethings',
+    lib: {
+      name: "NiceThings",
+      formats: ["es"],
+      entry,
+    },
+  }
+})
+```
+
+```shell
+vite build
+
+vite v5.1.5 building for production...
+✓ 8 modules transformed.
+libraries/nicethings/mixins.css     0.00 kB │ gzip: 0.02 kB
+libraries/nicethings/docs.css       0.14 kB │ gzip: 0.11 kB
+libraries/nicethings/grid.css       0.15 kB │ gzip: 0.13 kB
+libraries/nicethings/card.css       0.37 kB │ gzip: 0.26 kB
+libraries/nicethings/base.css       0.45 kB │ gzip: 0.28 kB
+libraries/nicethings/reset.css      1.89 kB │ gzip: 0.79 kB
+libraries/nicethings/drop-menu2.js  0.09 kB │ gzip: 0.11 kB
+
+```

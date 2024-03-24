@@ -1,0 +1,28 @@
+.collapsible-sidebar {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template:
+      "main sidebar";
+    grid-template-columns: 1fr minmax(200px, 300px);
+
+    main {
+        grid-area: main;
+    }
+
+    aside {
+        grid-area: sidebar;
+        padding-inline-start: 1rem;
+        background-color: var(--accent);
+        box-shadow: -2px 0 3px rgba(0, 0, 0, .2);
+    }
+
+    &.collapsible-sidebar--collapsed {
+        grid-template:
+         "main" 1fr;
+        aside {
+            display: none;
+        }
+    }
+}
+
